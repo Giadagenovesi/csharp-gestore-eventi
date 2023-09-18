@@ -80,6 +80,7 @@ namespace csharp_gestore_eventi
         }
 
         //METODI
+
         public void PrenotaPosti(int posti)
         {
             if (numPostiPrenotati > capienzaEvento)
@@ -95,7 +96,7 @@ namespace csharp_gestore_eventi
                 throw new Exception("Non puoi selezionare un evento già terminato");            
             } else
             {
-                numPostiPrenotati += posti;
+                numPostiPrenotati = posti;
 
             }
         }
