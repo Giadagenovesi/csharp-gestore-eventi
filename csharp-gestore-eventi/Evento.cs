@@ -78,6 +78,49 @@ namespace csharp_gestore_eventi
             }
         }
 
-       
+        //METODI
+        public void PrenotaPosti(int posti)
+        {
+            if (numPostiPrenotati > capienzaEvento)
+            {
+                throw new Exception("Non ci sono abbastanza posti disponibili, riprova prenotando meno posti!");
+            }else
+            {
+                numPostiPrenotati += posti;
+            }
+
+            if (this.data < DateTime.Now) 
+            {
+                throw new Exception("Non puoi selezionare un evento già terminato");            
+            } else
+            {
+                numPostiPrenotati += posti;
+
+            }
+        }
+
+        public void DisdiciPosti(int posti)
+        {
+            if (numPostiPrenotati - posti <= 0)
+            {
+                throw new Exception("Stai tentandop di disdire troppi posti!");
+            }
+            else
+            {
+                numPostiPrenotati -= posti;
+            }
+
+            if (this.data < DateTime.Now)
+            {
+                throw new Exception("Non puoi selezionare un evento già terminato");
+            }
+            else
+            {
+                numPostiPrenotati -= posti;
+
+            }
+        }
+
+
     }
 }
