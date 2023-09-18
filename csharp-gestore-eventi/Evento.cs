@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -118,9 +119,14 @@ namespace csharp_gestore_eventi
             {
                 numPostiPrenotati -= posti;
 
-            }
+            }  
         }
 
+        public override string ToString()
+        {
+            string suntoEvento = $"L'evento {this.titolo} in data {this.data.ToString("dd/MM/yyyy")}"; 
+            return suntoEvento;
+        }
 
     }
 }
