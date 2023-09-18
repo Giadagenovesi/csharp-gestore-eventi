@@ -62,7 +62,11 @@ namespace csharp_gestore_eventi
             if (titolo == null) 
             {
                 throw new ArgumentNullException("Devi inserire un titolo per il tuo evento");
-            } else
+            } else if (titolo == "")
+            {
+                throw new ArgumentNullException("Devi inserire un titolo per il tuo evento");
+
+            }else
             {
                 this.titolo = titolo;
             }
@@ -83,12 +87,12 @@ namespace csharp_gestore_eventi
 
         public void PrenotaPosti(int posti)
         {
-            if (numPostiPrenotati > capienzaEvento)
+            if (numPostiPrenotati + posti > this.capienzaEvento)
             {
                 throw new Exception("Non ci sono abbastanza posti disponibili, riprova prenotando meno posti!");
             }else
             {
-                numPostiPrenotati += posti;
+                numPostiPrenotati = posti;
             }
 
             if (this.data < DateTime.Now) 
@@ -105,7 +109,7 @@ namespace csharp_gestore_eventi
         {
             if (numPostiPrenotati - posti <= 0)
             {
-                throw new Exception("Stai tentandop di disdire troppi posti!");
+                throw new Exception("Stai tentando di disdire troppi posti!");
             }
             else
             {
