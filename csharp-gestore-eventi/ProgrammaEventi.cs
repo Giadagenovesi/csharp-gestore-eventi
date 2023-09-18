@@ -25,5 +25,7 @@ namespace csharp_gestore_eventi
         {
             this.eventi.Add(evento);
         }
+
+       
     }
 }

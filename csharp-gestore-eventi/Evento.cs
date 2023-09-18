@@ -1,12 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace csharp_gestore_eventi
+﻿namespace csharp_gestore_eventi
 {
     public class Evento
     {
@@ -23,11 +15,11 @@ namespace csharp_gestore_eventi
             SetTitolo(titolo);
             SetData(data);
             numPostiPrenotati = 0;
-            if(capienzaEvento < 1)
+            if (capienzaEvento < 1)
             {
                 throw new Exception("il numero dei posti deve essere maggiore di 0");
             }
-            else 
+            else
             {
                 this.capienzaEvento = capienzaEvento;
             }
@@ -38,19 +30,19 @@ namespace csharp_gestore_eventi
         //GETTERS
 
         public string GetTitolo()
-        { 
-            return titolo; 
+        {
+            return titolo;
         }
         public DateTime GetData()
-        { 
-            return data; 
+        {
+            return data;
         }
 
         public int GetCapienzaEvento()
-        { 
-            return capienzaEvento; 
+        {
+            return capienzaEvento;
         }
-        public int GetNumPostiPrenotati() 
+        public int GetNumPostiPrenotati()
         {
             return numPostiPrenotati;
         }
@@ -59,14 +51,16 @@ namespace csharp_gestore_eventi
 
         public void SetTitolo(string titolo)
         {
-            if (titolo == null) 
+            if (titolo == null)
             {
                 throw new ArgumentNullException("Devi inserire un titolo per il tuo evento");
-            } else if (titolo == "")
+            }
+            else if (titolo == "")
             {
                 throw new ArgumentNullException("Devi inserire un titolo per il tuo evento");
 
-            }else
+            }
+            else
             {
                 this.titolo = titolo;
             }
@@ -77,7 +71,8 @@ namespace csharp_gestore_eventi
             if (data < DateTime.Now)
             {
                 throw new Exception("Questa non è una macchina del tempo, inserisci una data valida");
-            } else
+            }
+            else
             {
                 this.data = data;
             }
@@ -95,17 +90,14 @@ namespace csharp_gestore_eventi
             if (numPostiPrenotati + posti > this.capienzaEvento)
             {
                 throw new Exception("Non ci sono abbastanza posti disponibili, riprova prenotando meno posti!");
-            }else
-            {
-                numPostiPrenotati = posti;
             }
-
-            if (this.data < DateTime.Now) 
+            else if (this.data < DateTime.Now)
             {
-                throw new Exception("Non puoi selezionare un evento già terminato");            
-            } else
+                throw new Exception("Non puoi selezionare un evento già terminato");
+            }
+            else
             {
-                numPostiPrenotati = posti;
+                numPostiPrenotati += posti;
 
             }
         }
@@ -116,12 +108,8 @@ namespace csharp_gestore_eventi
             {
                 throw new Exception("Stai tentando di disdire troppi posti!");
             }
-            else
-            {
-                numPostiPrenotati -= postiDisdetti;
-            }
+            else if (this.data < DateTime.Now)
 
-            if (this.data < DateTime.Now)
             {
                 throw new Exception("Non puoi selezionare un evento già terminato");
             }
@@ -129,12 +117,12 @@ namespace csharp_gestore_eventi
             {
                 numPostiPrenotati -= postiDisdetti;
 
-            }  
+            }
         }
 
         public override string ToString()
         {
-            string suntoEvento = $"L'evento {this.titolo} in data {this.data.ToString("dd/MM/yyyy")}"; 
+            string suntoEvento = $"L'evento {this.titolo} in data {this.data.ToString("dd/MM/yyyy")}";
             return suntoEvento;
         }
 
