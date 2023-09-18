@@ -6,6 +6,10 @@
         {
             try
             {
+                Console.WriteLine("Inserisci il titolo del tuo programma eventi :");
+                string nomeProgrammaEventi = Console.ReadLine();
+                Console.WriteLine("Inserisciil numero di eventi che vuoi inserire nel tuo programma:");
+
 
                 Console.WriteLine("Inserisci il nome dell'evento:");
                 string titolo = Console.ReadLine();
