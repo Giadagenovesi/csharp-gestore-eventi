@@ -16,6 +16,24 @@ namespace csharp_gestore_eventi
         private int numPostiPrenotati;
 
 
+        //COSTRUTTORE 
+        public Evento(string titolo, DateTime data, int capienzaEvento)
+        {
+            SetTitolo(titolo);
+            SetData(data);
+            numPostiPrenotati = 0;
+            if(capienzaEvento < 1)
+            {
+                throw new Exception("il numero dei posti deve essere maggiore di 0");
+            }
+            else 
+            {
+                this.capienzaEvento = capienzaEvento;
+            }
+
+        }
+
+
         //GETTERS
 
         public string GetTitolo()
@@ -57,8 +75,9 @@ namespace csharp_gestore_eventi
             } else
             {
                 this.data = data;
-
             }
         }
+
+       
     }
 }
