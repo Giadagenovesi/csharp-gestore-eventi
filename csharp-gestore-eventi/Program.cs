@@ -20,9 +20,32 @@
 
                 evento1.PrenotaPosti(numPostiPrenotati);
                 Console.WriteLine("Numero di posti prenotati:" + evento1.GetNumPostiPrenotati());
-                Console.WriteLine("Numero posti disponibili:" + (capienzaEvento - evento1.GetNumPostiPrenotati()));
+                Console.WriteLine("Numero posti disponibili:" + (evento1.PostiDisponibili()));
 
-            } catch (Exception e)
+                bool azione = true;
+                while (azione)
+                {
+                    Console.WriteLine("Vuoi disdire dei posti(s/n)?");
+                    string risposta = Console.ReadLine();
+
+                    if (risposta == "s")
+                    {
+                        Console.WriteLine("Quanti posti vuoi disdire?");
+                        int postiDaDisdire = int.Parse(Console.ReadLine());
+                        evento1.DisdiciPosti(postiDaDisdire);
+                        Console.WriteLine("Numero posti disponibili:" + (evento1.PostiDisponibili()));
+                        Console.WriteLine("Numero di posti prenotati:" + evento1.GetNumPostiPrenotati());
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+
+                }
+
+            }
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }

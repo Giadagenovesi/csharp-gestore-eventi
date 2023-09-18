@@ -85,6 +85,11 @@ namespace csharp_gestore_eventi
 
         //METODI
 
+        public int PostiDisponibili()
+        {
+            return this.capienzaEvento - this.numPostiPrenotati;
+        }
+
         public void PrenotaPosti(int posti)
         {
             if (numPostiPrenotati + posti > this.capienzaEvento)
@@ -105,15 +110,15 @@ namespace csharp_gestore_eventi
             }
         }
 
-        public void DisdiciPosti(int posti)
+        public void DisdiciPosti(int postiDisdetti)
         {
-            if (numPostiPrenotati - posti <= 0)
+            if (numPostiPrenotati - postiDisdetti <= 0)
             {
                 throw new Exception("Stai tentando di disdire troppi posti!");
             }
             else
             {
-                numPostiPrenotati -= posti;
+                numPostiPrenotati -= postiDisdetti;
             }
 
             if (this.data < DateTime.Now)
@@ -122,7 +127,7 @@ namespace csharp_gestore_eventi
             }
             else
             {
-                numPostiPrenotati -= posti;
+                numPostiPrenotati -= postiDisdetti;
 
             }  
         }
