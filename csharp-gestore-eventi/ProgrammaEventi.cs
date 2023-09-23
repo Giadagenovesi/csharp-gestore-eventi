@@ -21,12 +21,26 @@ namespace csharp_gestore_eventi
         }
 
         //METODI 
-        public void AggiungiEvento (Evento evento)
+
+        //aggiungo un'evento alla lista
+
+        public void AggiungiEvento(Evento evento)
         {
             this.listaEventi.Add(evento);
         }
 
-        public void EventiPerData (DateTime dataEvento)
+        public void AggiungiEvento (List<Evento> listEventi)
+        {
+            foreach (Evento evento in listaEventi){
+
+                this.listaEventi.Add(evento);
+            }
+        }
+
+       
+
+        // restituisce lista di eventi in specifica data
+        public List<Evento> EventiPerData (DateTime dataEvento)
         {
             List<Evento> listaEventiInData = new List<Evento>();
             foreach (Evento evento in this.listaEventi) 
@@ -36,9 +50,10 @@ namespace csharp_gestore_eventi
                     listaEventiInData.Add(evento);
                 }
             }
-
+            return listaEventiInData;
         }
 
+        //stampa lista di eventi in console
         public static void StampaLista(List<Evento> listaEventi)
         {
             foreach (Evento evento in listaEventi)
@@ -47,22 +62,25 @@ namespace csharp_gestore_eventi
             }
         }
 
+        //restituisce numero eventi presenti nel programma
         public int NumeroEventi() 
         { 
             return this.listaEventi.Count; 
         }
 
+        //cancella la lista di eventi
         public void CancellaLista()
         { 
             this.listaEventi.Clear(); 
         }
+
 
         public override string ToString()
         {
             string message = "";
             foreach  (Evento evento in listaEventi)
             {
-                message += evento.ToString();
+                message += "\t" + evento.ToString() + "\n";
             }
             return message;
         }
